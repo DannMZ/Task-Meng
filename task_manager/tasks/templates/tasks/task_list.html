@@ -1,0 +1,30 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.completed|yesno:"Completed,Not Completed" }}</td>
+            <td>
+                <a href="{% url 'task_detail' task.pk %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'task_update' task.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{% url 'task_delete' task.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'task_create' %}" class="btn btn-primary">Add New Task</a>
+{% endblock %}
