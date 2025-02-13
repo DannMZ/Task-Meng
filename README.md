@@ -1,34 +1,32 @@
-# Django REST API з використанням Conda
+# Task Manager API
 
-Цей проект демонструє, як створити простий REST API на Django, використовуючи `conda` для керування середовищем.
+Task Manager API - це веб-додаток для управління завданнями, створений на основі Django REST Framework (DRF) з використанням SQLite та Conda.
 
-## 📌 Вимоги
+## 🚀 Функціональність
+- Створення, редагування та видалення завдань
+- Перегляд списку завдань
+- API для взаємодії з завданнями (CRUD)
+- Використання Django REST Framework
 
-- Python 3.9+
-- Conda (Miniconda або Anaconda)
-- Django
-- Django REST framework
-
-## 🚀 Встановлення
-
+## 🛠️ Встановлення та запуск
 ### 1. Клонування репозиторію
 ```bash
-git clone https://github.com/yourusername/myproject.git
-cd myproject
+git clone https://github.com/DannMZ/Task-Meng
+cd task-manager
 ```
 
-### 2. Створення та активація середовища Conda
+### 2. Створення та активація віртуального середовища (Conda)
 ```bash
-conda create --name mydjangoenv python=3.9
-conda activate mydjangoenv
+conda create --name taskmanager python=3.10 -y
+conda activate taskmanager
 ```
 
 ### 3. Встановлення залежностей
 ```bash
-pip install django djangorestframework
+pip install -r requirements.txt
 ```
 
-### 4. Налаштування бази даних
+### 4. Виконання міграцій
 ```bash
 python manage.py makemigrations
 python manage.py migrate
@@ -39,40 +37,47 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-## 🔥 Використання API
+Сервер буде доступний за адресою: `http://127.0.0.1:8000/`
 
-### Отримати список елементів
-```bash
-GET http://127.0.0.1:8000/api/items/
+## 📡 API Роутинг
+| Метод | URL | Опис |
+|--------|----------------------|---------------------------|
+| GET | `/api/tasks/` | Отримати список завдань |
+| POST | `/api/tasks/` | Створити нове завдання |
+| GET | `/api/tasks/{id}/` | Отримати конкретне завдання |
+| PUT | `/api/tasks/{id}/` | Оновити завдання |
+| DELETE | `/api/tasks/{id}/` | Видалити завдання |
+
+## 📂 Структура проекту
 ```
-
-### Додати новий елемент
-```bash
-POST http://127.0.0.1:8000/api/items/
-Content-Type: application/json
-
-{
-    "name": "Example Item",
-    "description": "This is an example description."
-}
-```
-
-## 🛠 Структура проекту
-```
-myproject/
-│── myproject/
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│── myapp/
+task_manager/
+│── tasks/
 │   ├── migrations/
+│   ├── templates/tasks/
+│   │   ├── task_list.html
+│   │   ├── task_form.html
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
 │   ├── models.py
 │   ├── serializers.py
 │   ├── views.py
 │   ├── urls.py
+│── task_manager/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│── db.sqlite3
 │── manage.py
+│── requirements.txt
+│── README.md
 ```
+
+## 📝 Ліцензія
+Цей проект розповсюджується під ліцензією MIT. Вільно використовуйте його та розвивайте!
+
 ---
 
-💡 **Автор**: Mazarin
-
+🔧 Автор: **Mazarin**  
+📧 Контакти: [gnatuksapovaldaniil@gmail.com](mailto:gnatuksapovaldaniil@gmail.com)  
